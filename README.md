@@ -1,3 +1,5 @@
+** We are currently shifting the app entirely to React Native so the current website is an archive of past progress and no longer functional. We are doing this based on advice given to us at UVA Founder's Forum by Marty Weiner-- ex-CTO of Reddit.
+
 Unfortunately, at the moment I can't share the project publicly as some files have sensitive info. 
 If you would still like to see the code behind this project, please contact me.
 
