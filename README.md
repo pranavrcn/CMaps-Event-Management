@@ -33,6 +33,10 @@ Cmaps is built using a powerful combination of technologies to ensure scalabilit
 
 - **Heroku**: Cmaps is deployed on Heroku, leveraging its cloud platform to manage the app's deployment, scaling, and maintenance with minimal overhead.
 
+## Hackathon Recognition
+
+Cmaps had an early development stage at the University of Virginia's HooHacks Hackathon, where it competed in the Data Science track. This experience was pivotal in shaping the application's direction, particularly in leveraging data to enhance event discovery and user engagement. You can read more about our hackathon experience and early development process on our [Devpost write-up](https://devpost.com/software/cmaps).
+
 ## Impact and Future Goals
 
 Cmaps has proven to be a valuable tool for campus communities, fostering connections and enhancing event participation. With over 500 signups in the first week and recognition from the University of Virginia, Cmaps is poised to continue growing and serving more users.
