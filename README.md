@@ -1,4 +1,4 @@
-Unfortunately, at the moment I can't share the project publically as some files have sensitive info. 
+Unfortunately, at the moment I can't share the project publicly as some files have sensitive info. 
 If you would still like to see the code behind this project, please contact me.
 
 # Cmaps
