@@ -38,7 +38,7 @@ def recommend_events(user):
     # Calculate content-based recommendation scores
     user_interactions = UserAnalytics.objects.filter(user=user)
     if not user_interactions.exists():
-        return events.order_by('-date')[:10]  # Fallback to most recent events if no interactions
+        return events.order_by('-date')[:10]  # Fallback to most recent events if n/a interactions
 
     user_scores = {}
     for event in events:
