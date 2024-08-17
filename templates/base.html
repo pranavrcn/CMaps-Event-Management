@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMaps</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script> -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/2a29488bd1.js" crossorigin="anonymous"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.freepik.com/512/7987/7987463.png">
+
+  </head>
+
+<body>
+  <style>
+    .picture {
+      border-radius: 90%;
+      height: 50px;
+      width: 50px;
+      border: 3px solid #000;
+    }
+
+   
+
+  </style>
+
+</body>
+</html>
+
+{% load socialaccount %}
+{% load static %}
+
+
+<!-- Navbar Section -->
+
+<!-- {% if user.is_authenticated %} -->
+<!-- {% endif %} -->
+
+  <nav class="navbar">
+    <div class="navbar__container">
+      <a href="/" id="navbar__logo"><i class="fa-solid fa-location-dot fa-fw logo-icon"></i>CMAPS</a>
+      <div class="navbar__toggle" id="mobile-menu">
+        <span class="bar"></span> <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item">
+          <a href="/dashboard" class="navbar__links">Dashboard</a>
+        </li>
+        <li class="navbar__item">
+          <a href="/map" class="navbar__links">Map</a>
+        </li>
+
+
+        <li class="navbar__item">
+          <a href="/profile" class="navbar__links">Profile</a>
+        </li>
+        <li class="navbar__item">
+          <a href="/feedback" class="navbar__links">Feedback</a>
+        </li>
+        {% if user.is_authenticated %}
+
+
+        <li class="navbar__btn"><a href="logout" class="button">Log out</a></li>
+        {% else %}
+        <li class="navbar__btn"><a href="/login" class="button">Log In</a></li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </nav>
+</body>
+
+
+<script>
+ 
+ document.addEventListener('DOMContentLoaded', function() {
+    const menu = document.querySelector('#mobile-menu');
+    const menuLinks = document.querySelector('.navbar__menu');
+
+    menu.addEventListener('click', function() {
+        menu.classList.toggle('is-active');
+        menuLinks.classList.toggle('active');
+        adjustDropdownHeight();
+    });
+    window.addEventListener('resize', function() {
+  
+        if (window.innerWidth > 960) {
+            resetNavbar();
+        }
+    });
+
+    function adjustDropdownHeight() {
+        if (menuLinks.classList.contains('active')) {
+            let totalHeight = 0;
+            menuLinks.querySelectorAll('.navbar__item, .navbar__btn').forEach(item => {
+                totalHeight += item.offsetHeight;
+            });
+            menuLinks.style.height = `${totalHeight}px`;
+        } else {
+            menuLinks.style.height = '0';
+        }
+    }
+    function resetNavbar() {
+        menu.classList.remove('is-active');
+        menuLinks.classList.remove('active');
+        menuLinks.style.height = ''; // reset the height
+    }
+});
+
+
+</script>
+<style> 
+.navbar__menu.active {
+    background: #ffffff; 
+    color: #04246b; 
+    top: 100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 99;
+    height: 50vh;
+    font-size: 1.6rem;
+    overflow: visible; 
+
+}
+
+.navbar__menu.active .navbar__links {
+    color: #04246b;
+}
+
+
+
+.navbar__menu.active .navbar__links:hover {
+    color: #f77062; 
+    background-color: #FFFFFF; 
+}
+body {
+    background-color: #f8fbff; 
+  }
+
+#mobile-menu {
+  display: block; 
+  position: absolute;
+  top: 20%;
+  right: 5%;
+  transform: translate(5%, 20%);
+}
+
+.navbar__toggle .bar {
+  display: block;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 960px) {
+  .navbar__menu {
+    border-radius: 10px; 
+
+    display: grid;
+    grid-template-columns: auto;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    top: -1000px;
+    opacity: 1;
+    transition: all 0.5s ease;
+    height: 50vh;
+    z-index: -1;
+    left: 0; 
+    right: 0; 
+    margin: 0 auto; 
+    transform: none; 
+    border: 2px solid black; 
+  }
+
+}
+
+
+.navbar__menu {
+  display: none; 
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Kumbh Sans', sans-serif;
+}
+
+.navbar {
+    background: #f4f9ff;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;  
+    top: 0;
+    z-index: 999;
+    border-bottom: 1.4px solid rgb(228, 227, 227); 
+    max-width: 100%; 
+    margin: auto; 
+    padding: 10px 20px; 
+}
+
+
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  width: 100%;
+  max-width: 1300px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+
+#navbar__logo {
+  background-image: linear-gradient(to top, #0101ff 0%, #a1b7ff 100%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.7rem;
+  position: relative;
+  bottom: 7px;
+}
+
+.fa-gem {
+  margin-right: 0.5rem;
+}
+
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  
+}
+
+.navbar__item {
+  height: 80px;
+}
+
+.navbar__item:hover .navbar__menu.active {
+    display: block; 
+}
+.navbar__links {
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  position: relative;
+  bottom: 1vh;
+}
+
+.navbar__btn {
+  position: relative;
+  bottom: 1vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 8px 20px;
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background: #f77062;
+  color: #fff;
+}
+
+.button:hover {
+  text-decoration: none;
+  color: #000000;
+  
+}
+
+.navbar__links:hover {
+  color: #f77062;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative; 
+
+}
+
+@media screen and (max-width: 960px) {
+  .navbar__container {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    padding: 0;
+  }
+
+  .navbar__menu {
+    display: grid;
+    grid-template-columns: auto;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    top: -1000px;
+    opacity: 1;
+    transition: all 0.5s ease;
+    height: 50vh;
+    z-index: -1;
+    left: 0; 
+    right: 0; 
+    margin: 0 auto; 
+    transform: none; 
+  }
+
+
+
+  #navbar__logo {
+    padding-left: 25px;
+  }
+
+  .navbar__toggle .bar {
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background: black;
+  }
+
+  .navbar__item {
+    width: 100%;
+  }
+
+  .navbar__links {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+  }
+
+  .navbar__btn {
+    padding-bottom: 2rem;
+    margin-top: 1rem; 
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80px;
+    margin: 0;
+  }
+
+  #mobile-menu {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    transform: translate(5%, 20%);
+  }
+
+  .navbar__toggle .bar {
+    display: block;
+    cursor: pointer;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  #mobile-menu.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+</style>

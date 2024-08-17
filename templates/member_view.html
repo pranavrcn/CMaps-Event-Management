@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% include 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMaps</title>
+</head>
+<body>
+
+    <!-- if a organization -->
+    {% if member.profile_pic %}
+        <img src="{{ member.profile_pic.url }}" height="50px" width="50px">
+
+    {% else %}
+        <img src="https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg" height="50px" width="50px">
+
+    {% endif %}
+
+    {% if submitted %}
+        <p>
+            succesfully changed profile picture
+        </p>
+    {% endif %}
+
+    
+
+    <h2> {{ user.first_name }} {{ user.last_name }}</h2>
+    <p>Email: {{ user.email }}</p>
+
+
+
+    Change Profile Picture
+
+</body>
+</html>
+
+{% include 'footer.html' %}

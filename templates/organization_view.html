@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+{% include 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMaps</title>
+    <style>
+/* Popup container */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+    </style>
+</head>
+<body>
+    {% if org.org_image %}
+        <img class="picture" src="{{ org.org_image.url }}" height="100px" width="100px">
+    {% endif %}
+
+<h3>
+    {{ org.name }}
+</h3>
+
+<h5>
+    {{ org.description }}
+</h5>
+
+
+    {% if requested_join %}
+        Sent
+    {% elif joined %}
+        
+    <div id="leaveOrgButton"> 
+        Joined!
+        <br>
+        <div href="/organizations/{{org.name}}" class="popup" id="leave{{org.id}}" data-catid="{{org.id}}" onclick="confirmAction()">Leave Organization
+            <span class="popuptext" id="myPopup">Are you sure?</span>
+        </div>
+    </div>
+
+    <div id="leftOrg" hidden="true"> 
+        <a type="button" class="addbutton" href="/organizations/{{org.name}}" id="join{{org.id}}" data-catid="{{org.id}}" >        
+            {% if org.public_org %}
+                Join
+            {% else %}
+                Request to Join
+            {% endif %}
+        </a>
+    </div>
+
+
+    {% else %}
+    
+        <a type="button" class="addbutton" href="/organizations/{{org.name}}" id="join{{org.id}}" data-catid="{{org.id}}" >        
+            {% if org.public_org %}
+                Join
+            {% else %}
+                Request to Join
+            {% endif %}
+        </a>
+    {% endif %}
+    
+
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('.addbutton').click(function() {
+        var catid;
+        catid = $(this).attr("data-catid");
+        $.ajax(
+        {
+            type:"GET",
+            url: "/joinorg",
+            async: false,
+            data:{
+                    post_id: catid
+            },
+            success: function( data ) 
+            {
+                $( '#join'+ catid ).remove();
+                $( '#message' ).text(data);
+            }
+        })
+    });    
+    
+    </script>
+
+<script type="text/javascript">
+    const confirmAction = () => {
+        const response = confirm("Are you sure you want to leave this organization?");
+        if (response) {
+            var ele = $(".popup"); //document.getElementsByClassName("leavebutton");
+            // var catid;
+            var catid = ele.attr("data-catid");
+            console.log("catid:");
+            console.log(catid);
+            
+            $.ajax(
+            {
+                type:"GET",
+                url: "/leaveorg",
+                async: false,
+                data:{
+                        post_id: catid
+                },
+                success: function( data ) 
+                {
+                    $( '#leaveOrgButton').hide();
+                    // $( '#leaveOrgButton').remove();
+                    $( '#leftOrg').attr("hidden", false);
+                    $( '#message' ).text(data);
+                    }
+                })
+        } else {
+
+        }
+    }
+</script>
+
+</body>
+</html>
+
+{% include 'footer.html' %}

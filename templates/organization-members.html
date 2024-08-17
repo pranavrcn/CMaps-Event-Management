@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% include 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMaps</title>
+    <style>
+        #search-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        #search-bar {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        #search-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #search-button:hover {
+            background-color: #0056b3;
+        }
+        
+    </style>
+
+    
+</head>
+<body>
+    <h5>
+        Organization Members
+     </h5>
+ {% for m in members %}
+ <ul>
+    <div id="userdivold{{m.user.id}}">
+        <li>
+            {{m.user.first_name}} {{m.user.last_name}} ({{m.user.email}})
+            <button>
+                <a href="" class="removeuser" id="remove{{m.user.id}}" data-catid="{{m.user.id}}">
+                    Remove User
+                </a>
+            </button>
+        </li>
+    </div>
+
+ </ul>
+ {% endfor %}
+
+
+ <br>
+ <br>
+ <h5>
+    Pending
+ </h5>
+ {% for req_user in requestingUsers %}
+ <ul>
+    <div id="userdivnew{{req_user.user.id}}">
+        <li>
+            <img class="picture" src="{{req_user.profile_pic.url}}">
+        
+            {{ req_user.user.first_name }} {{req_user.user.last_name}} ({{req_user.user.email}})
+        </li>
+    
+        <button>
+            <a href="" class="acceptuser" id="accept{{req_user.user.id}}" data-catid="{{req_user.user.id}}" >
+                Accept
+            </a>
+        </button>
+    
+        <button>
+            <a href="" class="declineuser" id="decline{{req_user.user.id}}" data-catid="{{req_user.user.id}}">
+                Decline
+            </a>
+        </button>
+    </div>
+
+
+ </ul>
+ {% endfor %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $('.acceptuser').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/acceptuser",
+        data:{
+                post_id: catid
+        },
+        success: function( data ) {
+            $( '#userdivnew'+ catid ).hide();
+        }
+    })
+});
+
+
+</script>
+
+<script type="text/javascript">
+    $('.removeuser').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/removeuser",
+        data:{
+                post_id: catid
+        },
+        success: function( data ) 
+        {
+            $( '#userdivold'+ catid ).hide();
+        }
+    })
+    });
+</script>
+
+<script type="text/javascript">
+    $('.declineuser').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/declineuser",
+        data:{
+                post_id: catid
+        },
+        success: function( data ) 
+        {
+            $( '#userdivnew'+ catid ).hide();
+        }
+    })
+    });
+</script>
+
+
+</body>
+</html>
+{% include 'footer.html' %}
+

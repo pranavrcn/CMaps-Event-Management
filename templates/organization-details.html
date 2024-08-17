@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% include 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMaps</title>
+</head>
+<body>
+
+    <!-- if a organization -->
+    <img class="picture" src="{{ org.org_image.url }}">
+
+    {% if submitted %}
+        <p>
+            Successfully updated profile information
+        </p>
+    {% endif %}
+
+    <h2>Welcome, {{ org.first_name }} </h2>
+
+    Change Profile Picture
+    <form action="/organization-details" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update Organization Information">
+    </form>
+
+</body>
+</html>
+{% include 'footer.html' %}
+

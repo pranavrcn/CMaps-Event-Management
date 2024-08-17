@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% include 'base.html' %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMaps</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .button-back {
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            padding: 15px 32px;
+
+        }
+        .button1 {background-color: #008CBA;} 
+        .button2 {background-color: #f44336;} 
+        .button3 {background-color: #555555;} 
+        .button4 {background-color: #1d8c28;} 
+        
+        .button-back:hover {
+            opacity: 0.85;
+            text-decoration: none;
+            color: white;
+        }
+        .button-back:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #4CAF50;
+        }
+        @media (max-width: 730px) {
+            .button-back {
+                height: 85%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4 md:p-8">
+        <div class="bg-white shadow-md rounded px-4 md:px-8 py-6 flex flex-col">
+            <div class="mb-6 p-4 bg-blue-500 text-white text-center rounded-lg shadow">
+            <h5 class="text-center text-xl md:text-2xl font-bold">{{ event.event_name }}</h5>
+        </div>
+            <p class="text-center mb-6">{{ event.start_time.date }}</p>
+            <p class="text-center mb-6">{{ event.start_time.time }} - {{ event.end_time.time }}</p>
+            <p class="text-center mb-6">{{ event.description }}</p>
+            
+            
+            <p class="text-center mb-6"><b>Location: {{ event.address}}</b></p>
+
+
+
+            <div class="flex justify-center gap-4">
+                {% if edittable %}
+                    <a href="/edit-event/{{event.id}}" class="button button1" aria-label="Edit Event">Edit Event</a>
+                    <a href="/delete-event/{{event.id}}" class="button button2" aria-label="Delete Event">Delete Event</a>
+                {% endif %}
+
+                {% if event.RSVP_link %} 
+                    <a href="{{event.RSVP_link}}" target="_blank" class="button button4" rel="noopener noreferrer" style = "width:20vh" >RSVP</a>
+                {% endif %}
+
+                <a onclick="history.back()" class="button-back button3" style = "width:20vh" aria-label="Go Back">Back</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% include 'footer.html' %}

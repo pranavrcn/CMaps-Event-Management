@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+{% include 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMaps</title>
+    <style>
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+
+.tab-pane {
+    font-family: Arial, sans-serif; 
+}
+
+.tab-pane h5 {
+    color: #4a90e2; 
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+.tab-pane ul {
+    list-style-type: none; 
+    padding-left: 20px;
+}
+
+.tab-pane ul li {
+    padding: 5px 0;
+}
+
+.tab-pane ul li a {
+    color: #333; 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
+}
+
+.tab-pane ul li a:hover {
+    color: #4a90e2; 
+}
+
+    </style>
+    <style>
+
+            .welcome-message {
+        padding-top: 20px; 
+        padding-bottom: 20px; 
+    }
+        body {
+            background-color: #ffffff; 
+            font-family: 'Arial', sans-serif; 
+        }
+        .header {
+            background-color: #04246b;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .profile-pic {
+            border-radius: 50%; 
+            border: 3px solid #000000; 
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+            margin: 0rem 0rem 1.5rem 0rem;
+            background-color: white;    
+        }
+        .nav-link {
+            color: #04246b;
+        }
+        .nav-link.active {
+            background-color: #ff8177; 
+            color: white;
+        }
+        .nav-tabs {
+            border-bottom: 2px solid #04246b; 
+        }
+        
+        .alert-success {
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+    .profile-header {
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        gap: 20px; 
+    }
+
+    .welcome-message {
+        margin: 0; 
+    }
+
+    @media (max-width: 768px) {
+        .profile-header {
+            flex-direction: column; 
+        }
+    }
+        @media (max-width: 768px) {
+            .header {
+                font-size: 18px;
+            }
+            .profile-pic {
+                width: 80px; 
+                height: 80px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+  {% load socialaccount %}
+
+  <div class="header">
+    <div class="profile-header">
+        <div class="profile-pic-container" style = "position: relative; top: 1.5vh">
+        <img class="profile-pic" src="{{ member.profile_pic.url }}" height="75px" width="75px" alt="Profile Picture">
+        </div>
+        <h2 class="welcome-message"> {{ member.user.first_name }} {{ member.user.last_name }}</h2>
+    </div>
+</div>
+<br>
+<div style="justify-content: center; display: flex;">
+  <h2>
+    {% if member in invites %}
+    <button>
+      <a href="" class="likebutton" id="like{{member.user.id}}" data-catid="{{member.user.id}}">
+          Accept Friend Request
+      </a>
+    </button>
+    {% elif member in friends %}
+    <button class="btn btn-primary">
+      <div href="/users/{{member.user.id}}" class="popup" id="leave{{member.id}}" data-catid="{{member.id}}" onclick="confirmAction()">Remove Friend
+          <span class="popuptext" id="myPopup">Are you sure?</span>
+      </div>
+    </button>
+    {% elif member not in members_sent %}
+    <button class="btn btn-primary">
+      <a href="" class="likebutton" id="like{{member.user.id}}" data-catid="{{member.user.id}}">
+          Add Friend
+      </a>   
+    </button>
+    {% else %}
+      <button type="button" class="btn btn-primary" aria-disabled="true" disabled>
+        Sent
+      </button>
+    {% endif %}
+  </h2>
+
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('.likebutton').click(function() {
+        var catid;
+        catid = $(this).attr("data-catid");
+        $.ajax(
+        {
+            type:"GET",
+            url: "/likepost",
+            async: false,
+            data:{
+                    post_id: catid
+            },
+            success: function( data ) 
+            {
+                $( '#join'+ catid ).remove();
+                $( '#message' ).text(data);
+            }
+        })
+    });    
+    
+    </script>
+
+<script type="text/javascript">
+    const confirmAction = () => {
+        const response = confirm("Are you sure you want to remove this friend?");
+        if (response) {
+            var ele = $(".popup");
+            var catid = ele.attr("data-catid");
+            console.log("catid:");
+            console.log(catid);
+            
+            $.ajax(
+            {
+                type:"GET",
+                url: "/removefriend",
+                async: false,
+                data:{
+                        post_id: catid
+                },
+                success: function( data ) 
+                {
+                    $( '#leaveOrgButton').hide();
+                    $( '#leftOrg').attr("hidden", false);
+                    $( '#message' ).text(data);
+                    }
+                })
+        } else {
+
+        }
+    }
+</script>
+
+</body>
+</html>
+
+{% include 'footer.html' %}
