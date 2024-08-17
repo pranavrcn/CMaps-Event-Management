@@ -6,6 +6,16 @@ from address.models import AddressField
 import datetime
 from datetime import date
 from rest_framework import serializers
+from django.db import models
+from django.contrib.auth.models import User
+
+
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    interaction_type = models.CharField(max_length=50, choices=INTERACTION_CHOICES)
+    interaction_value = models.FloatField(default=0.0)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 
 
@@ -52,7 +62,21 @@ class Organization_Invite(models.Model):
         "Organization", on_delete=models.CASCADE)
     to_user = models.ForeignKey(
         Member, on_delete=models.CASCADE)
+class Event(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    category = models.CharField(max_length=100)
+    location = models.CharField(max_length=255)
+    date = models.DateTimeField()
+    tags = models.CharField(max_length=255)
 
+class UserAnalytics(models.Model):
+    INTERACTION_CHOICES = [
+        ('view', 'View'),
+        ('save', 'Save'),
+        ('attendance', 'Attendance'),
+    ]
+    
 # EVENT_ICONS = {
 #     "SP": "Sports-outlined.png",
 #     "CO": "CIO-outlined.png",
