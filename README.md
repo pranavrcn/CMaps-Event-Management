@@ -1,56 +1,54 @@
 # CMaps
 
-CMaps is a modern, full-stack web application designed to connect people with events happening nearby, with a focus on simplicity and ease of use. Originally created for campus communities, CMaps offers a minimalistic interface that allows users to discover, save, and share events seamlessly.
+CMaps is a full-stack web application we developed with a clear goal: to connect people with local events in a simple, intuitive way. Initially designed to serve campus communities, CMaps focuses on making event discovery and participation as seamless as possible, with a clean, minimalistic interface.
 
 ## Key Features
 
-- **Event Discovery**: Users can find events happening near them using an interactive map powered by the Google Maps API. Events are displayed visually on the map, making it easy to explore what's happening in the vicinity.
-  
-- **Social Integration**: CMaps allows users to friend others within the platform, making it easy to share and invite friends to events. This social aspect enhances community engagement and encourages participation.
+- **Event Discovery**: CMaps features an interactive map powered by the Google Maps API, allowing users to easily find events happening around them. The visual display of events on the map makes it easy to explore what's going on nearby.
 
-- **Event Filtering**: Users can filter events by time, category, and location to find exactly what they're interested in. This ensures that users can tailor their experience to their preferences.
+- **Social Integration**: We implemented a social component within CMaps, enabling users to connect with friends on the platform. This feature allows for effortless event sharing and invitations, promoting a more engaged and connected community.
 
-- **Event Details and Dashboard**: Each event has its own detail page with all the necessary information. Users also have access to a personal dashboard where they can see saved events, popular events, and events they have created.
+- **Event Filtering**: To ensure users can tailor their experience, we included filtering options by time, category, and location. This makes it simple for users to find exactly what they're interested in, enhancing their overall experience.
 
-- **Dual Account Types**: CMaps supports two types of accounts – users and organizations. While users can discover and attend events, organizations have the tools to promote their events to the campus community.
+- **Event Details and Dashboard**: Each event has a dedicated detail page with all relevant information. Additionally, users have access to a personal dashboard where they can view saved events, popular events, and events they've created.
 
-- **Scalability and Reach**: In its first week post-launch, CMaps received over 500 signups and was featured in the University of Virginia Newsletter, highlighting its immediate impact and popularity within the campus community.
+- **Dual Account Types**: CMaps supports two types of accounts—users and organizations. While users can discover and attend events, organizations have the tools to promote their events effectively within the campus community.
+
+- **Scalability and Reach**: Within its first week, CMaps attracted over 500 signups and was featured in the University of Virginia Newsletter. This early traction highlighted the platform's potential and its immediate impact on the campus community.
 
 ## Technical Overview
 
-CMaps is built using a powerful combination of technologies to ensure scalability, reliability, and a seamless user experience:
+CMaps is built with a strong focus on scalability, reliability, and user experience, using a robust stack of technologies:
 
-- **Django**: The backend of CMaps is powered by Django, a robust and secure Python framework that handles everything from database management to routing and authentication.
+- **Django**: We chose Django for the backend due to its security, scalability, and ability to handle everything from database management to routing and authentication seamlessly.
   
-- **PostgreSQL**: We use PostgreSQL as our database, benefiting from its advanced features and scalability to manage user data, event information, and social interactions efficiently.
+- **PostgreSQL**: PostgreSQL serves as our database, providing advanced features and the scalability needed to manage user data, event information, and social interactions efficiently.
 
-- **Frontend Technologies**: The frontend is designed with a combination of Bootstrap and jQuery, ensuring a responsive and intuitive user interface. Ajax is utilized for asynchronous data loading, providing a smooth and interactive user experience.
+- **Frontend Technologies**: The frontend is built using Bootstrap and jQuery, offering a responsive and user-friendly interface. Ajax is integrated for asynchronous data loading, ensuring a smooth and interactive experience.
 
-- **Google Maps API**: The Google Maps API is integrated to provide a dynamic and interactive map feature, enabling users to visualize events in their area easily.
+- **Google Maps API**: We integrated the Google Maps API to power the dynamic and interactive map feature, making it easy for users to visualize events in their area.
 
-- **Heroku**: CMaps is deployed on Heroku, leveraging its cloud platform to manage the app's deployment, scaling, and maintenance with minimal overhead.
+- **Heroku**: For deployment, we used Heroku, taking advantage of its cloud platform to manage app deployment, scaling, and maintenance with minimal overhead.
 
 ## Hackathon Recognition
 
-CMaps had an early development stage at the University of Virginia's HooHacks Hackathon, where it competed in the Data Science track. This experience was pivotal in shaping the application's direction, particularly in leveraging data to enhance event discovery and user engagement. You can read more about our hackathon experience and early development process on our [Devpost write-up](https://devpost.com/software/cmaps).
+The early development of CMaps took place at the University of Virginia's HooHacks Hackathon, where it competed in the Data Science track. This experience was crucial in refining the application's direction, particularly in utilizing data to enhance event discovery and user engagement. You can learn more about this experience and our development process in our [Devpost write-up](https://devpost.com/software/cmaps).
 
 ## Strategic Partnerships and Business Decisions
 
-During its development, CMaps was in talks to enter into a strategic partnership with DoorList, a company founded at the University of Virginia, which recently raised $3,000,000 in an oversubscribed seed round of funding. The partnership envisioned CMaps serving as public event vendor for DoorList, providing an API specifically designed to integrate our event catalog with their platform.
+During development, CMaps was in discussions for a strategic partnership with DoorList, a company also founded at the University of Virginia. DoorList had recently secured $3,000,000 in an oversubscribed seed round, and the partnership would have positioned CMaps as their public event vendor, with an API integration for our event catalog.
 
-However, as CMaps evolved, our team decided to pursue a different direction for the application, focusing more on enhancing the campus community experience rather than broad public event vending. As a result, the deal with DoorList ultimately did not move forward. This decision was made to align better with our long-term vision for CMaps and to ensure the platform's growth remained true to its original mission.
+However, as CMaps evolved, we made the strategic decision to focus more on enhancing the campus community experience rather than expanding into public event vending. This pivot was made to stay true to CMaps' core mission and to better align with our long-term vision, resulting in the decision not to proceed with the DoorList partnership.
 
 ## Impact and Future Goals
 
-CMaps has proven to be a valuable tool for campus communities, fostering connections and enhancing event participation. With over 500 signups in the first week and recognition from the University of Virginia, CMaps is poised to continue growing and serving more users.
+CMaps has already demonstrated its value within campus communities by fostering connections and increasing event participation. With over 500 signups in the first week and recognition from the University of Virginia, CMaps is on track to continue growing and serving more users.
 
 ### Future Enhancements:
 
-- **Enhanced Analytics**: Introducing analytics tools for organizations to better understand event engagement and optimize their promotion strategies.
-- **Mobile Optimization**: Further refining the mobile experience to ensure users have a seamless experience on all devices.
-- **Expanded Social Features**: Adding more social features, such as event reviews and recommendations based on user preferences.
-- **University Contract**: A significant future goal for CMaps is to secure a contract with the University of Virginia, positioning the platform as the primary event management tool for the campus. This would involve overtaking the current platform, Presence, by offering a more intuitive, community-focused solution that better meets the needs of students and organizations.
+- **Enhanced Analytics**: We plan to introduce analytics tools for organizations, enabling them to better understand event engagement and optimize their promotion strategies.
+- **Mobile Optimization**: Improving the mobile experience is a priority to ensure users enjoy a seamless experience across all devices.
+- **Expanded Social Features**: We're considering adding more social features, such as event reviews and personalized recommendations based on user preferences.
+- **University Contract**: A significant future goal for CMaps is to secure a contract with the University of Virginia, positioning the platform as the primary event management tool for the campus. This would involve surpassing the current platform, Presence, by offering a more intuitive, community-focused solution that meets the needs of students and organizations better.
 
-
-CMaps is not just a tool, but a community platform designed to bring people together. Whether you're a technical professional impressed by the robust architecture or a non-technical stakeholder excited by its impact, CMaps represents a successful blend of innovation, technology, and user-centric design.
-
+CMaps is more than just an application; it's a platform designed to bring communities together. Whether you're interested in the technical architecture or the impact it's had, CMaps represents a successful blend of innovation, technology, and a commitment to enhancing the user experience.
