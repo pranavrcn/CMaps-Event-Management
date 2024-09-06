@@ -4,7 +4,7 @@ CMaps is a full-stack web application we developed with a clear goal: to connect
 
 ## Key Features
 
-- **Event Discovery**: CMaps features an interactive map powered by the Google Maps API, allowing users to easily find events happening around them. The visual display of events on the map makes it easy to explore what's going on nearby.
+- **Event Discovery**: CMaps features an interactive map powered by the Google Maps API, allowing users to easily find events happening around them. 
 
 - **Social Integration**: We implemented a social component within CMaps, enabling users to connect with friends on the platform. This feature allows for effortless event sharing and invitations, promoting a more engaged and connected community.
 
@@ -24,7 +24,7 @@ CMaps is built with a strong focus on scalability, reliability, and user experie
   
 - **PostgreSQL**: PostgreSQL serves as our database, providing advanced features and the scalability needed to manage user data, event information, and social interactions efficiently.
 
-- **Frontend Technologies**: The frontend is built using Bootstrap and jQuery, offering a responsive and user-friendly interface. Ajax is integrated for asynchronous data loading, ensuring a smooth and interactive experience.
+- **Frontend Technologies**: The frontend is built using Bootstrap, d3.js, and jQuery, offering a responsive and user-friendly interface. Ajax is integrated for asynchronous data loading, ensuring a smooth and interactive experience.
 
 - **Google Maps API**: We integrated the Google Maps API to power the dynamic and interactive map feature, making it easy for users to visualize events in their area.
 
@@ -40,10 +40,6 @@ During development, CMaps was in discussions for a strategic partnership with Do
 
 However, as CMaps evolved, we made the strategic decision to focus more on enhancing the campus community experience rather than expanding into public event vending. This pivot was made to stay true to CMaps' core mission and to better align with our long-term vision, resulting in the decision not to proceed with the DoorList partnership.
 
-## Impact and Future Goals
-
-CMaps has already demonstrated its value within campus communities by fostering connections and increasing event participation. With over 500 signups in the first week and recognition from the University of Virginia, CMaps is on track to continue growing and serving more users.
-
 ### Future Enhancements:
 
 - **Enhanced Analytics**: We plan to introduce analytics tools for organizations, enabling them to better understand event engagement and optimize their promotion strategies.
@@ -51,4 +47,3 @@ CMaps has already demonstrated its value within campus communities by fostering 
 - **Expanded Social Features**: We're considering adding more social features, such as event reviews and personalized recommendations based on user preferences.
 - **University Contract**: A significant future goal for CMaps is to secure a contract with the University of Virginia, positioning the platform as the primary event management tool for the campus. This would involve surpassing the current platform, Presence, by offering a more intuitive, community-focused solution that meets the needs of students and organizations better.
 
-CMaps is more than just an application; it's a platform designed to bring communities together. Whether you're interested in the technical architecture or the impact it's had, CMaps represents a successful blend of innovation, technology, and a commitment to enhancing the user experience.
