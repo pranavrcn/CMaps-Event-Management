@@ -30,7 +30,7 @@ CMaps is built with a strong focus on scalability, reliability, and user experie
 
 - **Heroku**: For deployment, we used Heroku, taking advantage of its cloud platform to manage app deployment, scaling, and maintenance with minimal overhead.
 
-## Hackathon Recognition
+## Hackathon Development
 
 The early development of CMaps took place at the University of Virginia's HooHacks Hackathon, where it competed in the Data Science track. This experience was crucial in refining the application's direction, particularly in utilizing data to enhance event discovery and user engagement. You can learn more about this experience and our development process in our [Devpost write-up](https://devpost.com/software/cmaps).
 
