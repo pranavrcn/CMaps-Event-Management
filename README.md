@@ -1,6 +1,6 @@
 # CMaps
 
-CMaps is a full-stack web application we developed with a clear goal: to connect people with local events in a simple, intuitive way. Initially designed to serve campus communities, CMaps focuses on making event discovery and participation as seamless as possible, with a clean, minimalistic interface.
+CMaps is a full-stack web application we developed with a clear goal: to connect people with local events in a simple, intuitive way. Initially designed to serve campus communities, CMaps now focuses on making event discovery and participation as seamless as possible, with a clean, minimalistic interface.
 
 ## Key Features
 
